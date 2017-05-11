@@ -7,16 +7,25 @@ consumer_secret = 'UXij6NAtI768ZvNIKtGNpKdpqFNSbnDQFBRDMDGgxNVcObj9H3'
 access_token = '861549072527663105-LAPA04xOkIu1Ntgll4oh1MHCsd2WVg2'
 access_token_secret = 'hDFLO7NHeKsyrcKzS5CfDwFrYJxSmNqsloihOKtCZwaCU'
 
+file = open('crawlData.txt', 'a')
+
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-class MyStreamLstener(tweepy.StreamListener): #기존 tweepy의 streamListener의 오버라이딩
+dataLenght = 0
+
+class MyStreamLstener(tweepy.StreamListener):  #기존 tweepy의 streamListener의 오버라이딩
     def on_status(self, status):
-        print (status.text)
+        if dataLenght==1000000:  #원하는 데이터의 수를 지정하기 위한 조건문
+            return
+        dataStr = status.text
+        print (dataStr)  #데이터가 크롤링 되는 모습을 확인하기 위한 출력문
+        file.write(dataStr.encode('utf-8'))
+        ++dataLenght
 
     def on_error(self, status_code):
-        if status_code == 420: #stream에 연결을 하지 못하는 에러가 발생하는 경우 False를 반환
+        if status_code == 420:  #stream에 연결을 하지 못하는 에러가 발생하는 경우 False를 반환
             return False
 
 if __name__ == '__main__':
