@@ -2,10 +2,10 @@
 # 한글 주석을 사용하기 위함
 import tweepy
 
-consumer_key = 'consumer_key'
-consumer_secret = 'consumer_secret'
-access_token = 'access_token'
-access_token_secret = 'access_token_secret'
+consumer_key = 'dtaZTGizIfBywqezjfZNgTUVf'
+consumer_secret = 'UXij6NAtI768ZvNIKtGNpKdpqFNSbnDQFBRDMDGgxNVcObj9H3'
+access_token = '861549072527663105-LAPA04xOkIu1Ntgll4oh1MHCsd2WVg2'
+access_token_secret = 'hDFLO7NHeKsyrcKzS5CfDwFrYJxSmNqsloihOKtCZwaCU'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -22,4 +22,8 @@ class MyStreamLstener(tweepy.StreamListener): #기존 tweepy의 streamListener�
 if __name__ == '__main__':
     myStreamListener = MyStreamLstener()
     myStream = tweepy.Stream(auth=api.auth, listener=myStreamListener)
-    myStream.filter(track=['hungry']) #트위터 stream 중에 []배열 안에 들어간 단어들이 있는 문장만을 필터링 해줌
+    #트위터 stream 중에 []배열 안에 들어간 단어들이 있는 문장만을 필터링 해줌
+    #파이썬은 기본적으로 문자열을 unicode로 인식함
+    #키워드를 u'한글'으로 하게 되면 기본적으로 인식하는 문자 형태인 unicode로 변환하여 읽음
+    #사용자들 간에 대화에서 많이 등장 할 만한 단어들인 "근데", "그냥", "했어"를 포함하는 트윗들을 읽어옴
+    myStream.filter(track=[u'근데', u'그냥', u'했어'])
