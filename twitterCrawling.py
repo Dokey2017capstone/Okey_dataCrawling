@@ -2,10 +2,10 @@
 # 한글 주석을 사용하기 위함
 import tweepy
 
-consumer_key = 'dtaZTGizIfBywqezjfZNgTUVf'
-consumer_secret = 'UXij6NAtI768ZvNIKtGNpKdpqFNSbnDQFBRDMDGgxNVcObj9H3'
-access_token = '861549072527663105-LAPA04xOkIu1Ntgll4oh1MHCsd2WVg2'
-access_token_secret = 'hDFLO7NHeKsyrcKzS5CfDwFrYJxSmNqsloihOKtCZwaCU'
+consumer_key = 'consumer_key'
+consumer_secret = 'consumer_secret'
+access_token = 'access_token'
+access_token_secret = 'access_token_secret'
 
 file = open('crawlData.txt', 'a')
 
